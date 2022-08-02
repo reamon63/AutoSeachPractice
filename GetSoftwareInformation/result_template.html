@@ -1,0 +1,272 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<title>ソフトウェア情報自動収集結果</title>
+		<meta charset="utf-8" />
+		<style type="text/css">
+			html {
+				font-size: 14px;
+			}
+			table, th, td {
+				border: 2px solid;
+				border-collapse: collapse;
+			}
+			td, th {
+				padding: 4px 4px;
+			}
+			th {
+				background-color: #ffff99;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>ソフトウェア情報収集取得結果</h2>
+		<p><a href="http://vdm490-tst0004/devops/doku.php/process/%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A8%E3%82%A2%E5%88%A5_%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%E6%83%85%E5%A0%B1%E5%8F%8E%E9%9B%86%E6%96%B9%E6%B3%95" target=”_blank”>ソフトウエア別 リリース情報収集方法</a></p>
+		<p><a href="https://portal.msrc.microsoft.com/ja-jp/security-guidance" target=”_blank”>セキュリティ更新プログラム ガイド</a></p>
+		<p>取得日 {{ created_date }}</p>
+		<h3>各ソフトウェアバージョン情報</h3>
+		<table>
+			<tr>
+				<th>
+					ソフトウェア
+				</th>
+				<th>
+					最新バージョン
+				</th>
+			</tr>
+			<tr>
+				<td>
+					1. InternetExplorer
+				</td>
+				<td>
+					<pre>-</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					2. Windows Media Player
+				</td>
+				<td>
+					<pre>-</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					3. Microsoft Office Professional Plus
+				</td>
+				<td>
+					<pre>-</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					4. +Lhaca / Lhaplus
+				</td>
+				{% if vendor_update.lhaplus %}
+				<td bgcolor="Papayawhip">
+				{% else %}
+				<td>
+				{% endif %}
+					<pre>{{ vendor_version.lhaplus }}</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					5. 7-zip
+				</td>
+				{% if vendor_update.seven_zip %}
+				<td bgcolor="Papayawhip">
+				{% else %}
+				<td>
+				{% endif %}
+					<pre>{{ vendor_version.seven_zip }}</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					6. Becky!
+				</td>
+				{% if vendor_update.becky %}
+				<td bgcolor="Papayawhip">
+				{% else %}
+				<td>
+				{% endif %}
+					<pre>{{ vendor_version.becky }}</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					7. ATOK
+				</td>
+				{% if vendor_update.atok %}
+				<td bgcolor="Papayawhip">
+				{% else %}
+				<td>
+				{% endif %}
+					<pre>{{ vendor_version.atok }}</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					8. 一太郎ビューア
+				</td>
+				{% if vendor_update.ichitaro_viewer %}
+				<td bgcolor="Papayawhip">
+				{% else %}
+				<td>
+				{% endif %}
+					<pre>{{ vendor_version.ichitaro_viewer }}</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>9. Workshare Compare・Deltaview</td>
+				<td bgcolor="darkgray">-</td>
+			</tr>
+			<tr>
+				<td>
+					10. MarkDiff
+				</td>
+				<td bgcolor="darkgray">
+					<pre>{{ vendor_version.markdiff }}</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					11. Docuworks Viewer Light
+				</td>
+				{% if vendor_update.docuworksviewerlight %}
+				<td bgcolor="Papayawhip">
+				{% else %}
+				<td>
+				{% endif %}
+					<pre>{{ vendor_version.docuworksviewerlight }}</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					12. Adobe Flash Player
+				</td>
+				{% if vendor_update.flashplayer %}
+				<td bgcolor="Papayawhip">
+				{% else %}
+				<td>
+				{% endif %}
+					<pre>{{ vendor_version.flashplayer }}</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					13. Adobe Acrobat
+				</td>
+				{% if vendor_update.acrobat %}
+				<td bgcolor="Papayawhip">
+				{% else %}
+				<td>
+				{% endif %}
+					<pre>{{ vendor_version.acrobat }}</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					14. Trend VirusBuster Corp
+				</td>
+				{% if vendor_update.virusbustercorp %}
+				<td bgcolor="Papayawhip">
+				{% else %}
+				<td>
+				{% endif %}
+					<pre>{{ vendor_version.virusbustercorp }}</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					15. Microsoft Edge (Chromium-based)
+				</td>
+				{% if vendor_update.edge %}
+				<td bgcolor="Papayawhip">
+				{% else %}
+				<td>
+				{% endif %}
+					<pre>{{ vendor_version.edge }}</pre>
+				</td>
+			</tr>
+		</table>
+		<br>
+		<h3>Microsoftセキュリティ情報</h3>
+		{% if is_msrc_success %}
+		<table>
+			<tr>
+				<th nowrap>
+					情報公開日
+				</th>
+				<th nowrap>
+					記事
+				</th>
+				<th nowrap>
+					タイトル
+				</th>
+				<th nowrap>
+					プラットフォーム
+				</th>
+				<th nowrap>
+					深刻度
+				</th>
+				<th nowrap>
+					レポート（コピペ用）
+				</th>
+			</tr>
+			{% for msrc in msrc_list %}
+			<tr>
+				<td nowrap>
+					{{ msrc.release_date }}
+				</td>
+				<td nowrap>
+					<a href="{{ msrc.kb_link }}" target=”_blank”>{{ msrc.kb }}</a>
+				</td>
+				<td nowrap>
+					{{ msrc.title }}
+				</td>
+				<td nowrap>
+					{{ msrc.product }}
+				</td>
+				<td nowrap>
+					{{ msrc.severity }}
+				</td>
+				<td nowrap bgcolor="Papayawhip">
+					{{ msrc.report }}
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+		{% else %}
+		<p>当月分のMSセキュリティ情報がない、もしくは取得ができませんでした</p>
+		{% endif %}
+		<br>
+		<h3>重要なセキュリティ情報（参考情報）</h3>
+		{% if is_ipar_success %}
+		<table>
+			<tr>
+				<th>
+					情報公開日
+				</th>
+				<th>
+					記事
+				</th>
+			</tr>
+			{% for ipar in ipar_list %}
+			<tr>
+				<td>
+					{{ ipar.release_date }}
+				</td>
+				<td>
+					<a href="{{ ipar.link }}" target=”_blank”>{{ ipar.title }}</a>
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+		{% else %}
+		<p>重要なセキュリティ情報を取得できませんでした</p>
+		{% endif %}
+		<br>
+	</body>
+</html>
